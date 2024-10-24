@@ -84,9 +84,20 @@ export class nasaSeached extends DDDSuper(I18NMixin(LitElement)) {
         line-height: 40px;
         width: 100%;
       }
+      a:link {
+        color: var(--ddd-theme-default-white);
+        text-decoration: none;
+      }
+      a:visited{
+        color: var(--ddd-theme-default-white);
+        text-decoration: none;
+      }
     `;
   }
 
+  somerandommethod(e){
+    window.open('${item.links[0].href}', '_blank');
+  }
   // Lit render the HTML
   render() {
     return html`
@@ -99,10 +110,14 @@ export class nasaSeached extends DDDSuper(I18NMixin(LitElement)) {
     </details>
     <div class="results">
       ${this.items.map((item, index) => html`
+        <a href="${item.links[0].href}" target="_blank">
       <nasa-image
         source="${item.links[0].href}"
         title="${item.data[0].title}"
+        alternte="${item.data[0].description}"
+        secondary="${item.data[0].secondary_creator}"
       ></nasa-image>
+      </a>
       `)}
     </div>
     `;
